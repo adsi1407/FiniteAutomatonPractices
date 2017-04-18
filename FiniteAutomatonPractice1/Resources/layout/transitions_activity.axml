@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escoge el estado actual:"/>
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:id="@+id/spinnerActualState"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escoge símbolo de entrada:"/>
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:id="@+id/spinnerInputSymbol"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escoge el estado de destino:"/>
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:id="@+id/spinnerDestinationState"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSaveTransition"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="Guardar Transición"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblTransitions"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSaveFiniteAutomaton"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="Guardar Autómata Finito" />
+    </LinearLayout>
+</ScrollView>
