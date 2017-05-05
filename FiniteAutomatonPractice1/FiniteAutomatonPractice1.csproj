@@ -70,6 +70,7 @@
     <Compile Include="Models\Transition.cs" />
     <Compile Include="Views\TestFiniteAutomatonActivity.cs" />
     <Compile Include="Views\TransitionsActivity.cs" />
+    <Compile Include="Views\SummaryActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -88,6 +89,7 @@
     <AndroidResource Include="Resources\layout\test_automaton_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\summary_activity.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

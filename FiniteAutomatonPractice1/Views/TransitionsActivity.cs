@@ -82,7 +82,7 @@ namespace FiniteAutomatonPractice1.Views
 
             Toast.MakeText(this, string.Format("El autómata finito se ha guardado correctamente en {0}", fileName), ToastLength.Long).Show();
 
-            var intent = new Intent(this, typeof(TestFiniteAutomatonActivity));
+			var intent = new Intent(this, typeof(SummaryActivity));
             intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
             intent.PutExtra("serializedStatesList", serializedStatesList);
             intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
