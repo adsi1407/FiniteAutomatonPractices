@@ -2,10 +2,10 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using FiniteAutomatonPractice1.Models;
+using FiniteAutomatonPractice.Core.Models;
+using FiniteAutomatonPractice.Core.Utils;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FiniteAutomatonPractice1.Views
 {
@@ -22,6 +22,7 @@ namespace FiniteAutomatonPractice1.Views
         CheckBox checkIsAceptance;
         List<InputSymbol> inputSymbolsList;
         List<State> statesList;
+        StringOperations stringOperations;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,6 +44,8 @@ namespace FiniteAutomatonPractice1.Views
 
             inputSymbolsList = new List<InputSymbol>();
             statesList = new List<State>();
+
+            stringOperations = new StringOperations();
         }
 
         private void BtnSaveInputSymbols_Click(object sender, System.EventArgs e)
@@ -54,7 +57,7 @@ namespace FiniteAutomatonPractice1.Views
                 {
                     inputSymbolsList.Add(new InputSymbol { Name = txtInputSymbols.Text.Trim() });
 
-                    lblInputSymbols.Text = ShowInputSymbols();
+                    lblInputSymbols.Text = stringOperations.ShowInputSymbols(inputSymbolsList);
                     lblInputSymbols.Visibility = Android.Views.ViewStates.Visible;
 
                     txtInputSymbols.Text = string.Empty;
@@ -79,7 +82,7 @@ namespace FiniteAutomatonPractice1.Views
                 {
                     statesList.Add(new State { Name = txtStates.Text, Acceptance = checkIsAceptance.Checked });
 
-                    lblStates.Text = ShowStates();
+                    lblStates.Text = stringOperations.ShowStates(statesList);
                     lblStates.Visibility = Android.Views.ViewStates.Visible;
 
                     txtStates.Text = string.Empty;
@@ -105,43 +108,6 @@ namespace FiniteAutomatonPractice1.Views
             intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
             intent.PutExtra("serializedStatesList", serializedStatesList);
             StartActivity(intent);
-        }
-
-        private string ShowInputSymbols()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("Símbolos de Entrada: ");
-            for (int i = 0; i < inputSymbolsList.Count; i++)
-            {
-                builder.Append(inputSymbolsList[i].Name);
-
-                if (i != inputSymbolsList.Count - 1)
-                {
-                    builder.Append(", ");
-                }
-            }
-            return builder.ToString();
-        }
-
-        private string ShowStates()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("Estados:");
-            builder.Append("\n");
-            for (int i = 0; i < statesList.Count; i++)
-            {
-                builder.Append(statesList[i].Name);
-                if (statesList[i].Acceptance)
-                {
-                    builder.Append(": Aceptación");
-                }
-
-                if (i != statesList.Count - 1)
-                {
-                    builder.Append("\n");
-                }
-            }
-            return builder.ToString();
         }
     }
 }

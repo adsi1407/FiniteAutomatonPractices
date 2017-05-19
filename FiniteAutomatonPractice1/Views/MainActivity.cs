@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FiniteAutomatonPractice1.Views
 {
-    [Activity(Label = "Menu", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Automatas Finitos", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         Button btnCreate;
@@ -35,50 +35,43 @@ namespace FiniteAutomatonPractice1.Views
 
         private void BtnLoad_Click(object sender, System.EventArgs e)
         {
-			var intent = new Intent(Intent.ActionGetContent);
-			intent.SetType("text/plain");
-			if (intent.ResolveActivity(PackageManager) != null)
-			{
-				StartActivityForResult(intent, 0);
-			}
+            var intent = new Intent(Intent.ActionGetContent);
+            intent.SetType("text/plain");
+            if (intent.ResolveActivity(PackageManager) != null)
+            {
+                StartActivityForResult(intent, 0);
+            }
         }
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
-			if (requestCode == 0 && resultCode == Result.Ok)
-			{
-				var fileName = data.Data.EncodedPath;
-				if (fileName.EndsWith(".txt"))
-				{
-					if (File.Exists(data.Data.EncodedPath))
-					{
-						var streamReader = new StreamReader(fileName);
-						var automatonText = streamReader.ReadToEnd();
-						try
-						{
-							List<string> autiomatonTextSplitted = automatonText.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-							string serializedInputSymbolsList = autiomatonTextSplitted[0];
-							string serializedStatesList = autiomatonTextSplitted[1];
-							string serializedTransitionsList = autiomatonTextSplitted[2];
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == 0 && resultCode == Result.Ok)
+            {
+                var fileName = data.Data.EncodedPath;
+                if (File.Exists(data.Data.EncodedPath))
+                {
+                    var streamReader = new StreamReader(fileName);
+                    var automatonText = streamReader.ReadToEnd();
+                    try
+                    {
+                        List<string> autiomatonTextSplitted = automatonText.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                        string serializedInputSymbolsList = autiomatonTextSplitted[0];
+                        string serializedStatesList = autiomatonTextSplitted[1];
+                        string serializedTransitionsList = autiomatonTextSplitted[2];
 
-							var intent = new Intent(this, typeof(SummaryActivity));
-							intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
-							intent.PutExtra("serializedStatesList", serializedStatesList);
-							intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
-							StartActivity(intent);
-						}
-						catch (Exception)
-						{
-							Toast.MakeText(this, "El autómata no se encuentra en el formato requerido.", ToastLength.Long).Show();
-						}
-					}
-				}
-				else
-				{
-					Toast.MakeText(this, "El archivo debe ser de extensiñon .txt", ToastLength.Long).Show();
-				}
-			}
-		}
+                        var intent = new Intent(this, typeof(SummaryActivity));
+                        intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
+                        intent.PutExtra("serializedStatesList", serializedStatesList);
+                        intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
+                        StartActivity(intent);
+                    }
+                    catch (Exception)
+                    {
+                        Toast.MakeText(this, "El autómata no se encuentra en el formato requerido.", ToastLength.Long).Show();
+                    }
+                }
+            }
+        }
     }
 }

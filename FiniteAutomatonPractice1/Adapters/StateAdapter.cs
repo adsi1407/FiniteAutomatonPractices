@@ -2,7 +2,7 @@
 using Android.Widget;
 using Android.Content;
 using System.Collections.Generic;
-using FiniteAutomatonPractice1.Models;
+using FiniteAutomatonPractice.Core.Models;
 
 namespace FiniteAutomatonPractice1.Adapters
 {

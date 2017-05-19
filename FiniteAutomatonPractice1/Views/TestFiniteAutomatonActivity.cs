@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Widget;
-using FiniteAutomatonPractice1.Models;
+using FiniteAutomatonPractice.Core.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 

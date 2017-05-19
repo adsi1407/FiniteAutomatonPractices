@@ -2,12 +2,12 @@
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using FiniteAutomatonPractice.Core.Models;
+using FiniteAutomatonPractice.Core.Utils;
 using FiniteAutomatonPractice1.Adapters;
-using FiniteAutomatonPractice1.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace FiniteAutomatonPractice1.Views
 {
@@ -27,6 +27,8 @@ namespace FiniteAutomatonPractice1.Views
         List<State> statesList;
         List<Transition> transitionsList;
         string serializedTransitionsList;
+
+        StringOperations stringOperations;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -54,6 +56,7 @@ namespace FiniteAutomatonPractice1.Views
             spinnerDestinationState.Adapter = new StateAdapter(this, statesList);
 
             transitionsList = new List<Transition>();
+            stringOperations = new StringOperations();
         }
 
         private void BtnSaveTransition_Click(object sender, System.EventArgs e)
@@ -65,7 +68,7 @@ namespace FiniteAutomatonPractice1.Views
                 DestinationState = statesList[spinnerDestinationState.SelectedItemPosition],
             });
 
-            lblTransitions.Text = ShowTransitions();
+            lblTransitions.Text = stringOperations.ShowTransitions(transitionsList);
             lblTransitions.Visibility = Android.Views.ViewStates.Visible;
         }
 
@@ -78,7 +81,7 @@ namespace FiniteAutomatonPractice1.Views
             {
                 File.Delete(fileName);
             }
-            File.WriteAllText(fileName, WriteFiniteAutomaton());
+            File.WriteAllText(fileName, stringOperations.WriteFiniteAutomaton(serializedInputSymbolsList, serializedStatesList, serializedTransitionsList));
 
             Toast.MakeText(this, string.Format("El autómata finito se ha guardado correctamente en {0}", fileName), ToastLength.Long).Show();
 
@@ -87,39 +90,6 @@ namespace FiniteAutomatonPractice1.Views
             intent.PutExtra("serializedStatesList", serializedStatesList);
             intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
             StartActivity(intent);
-        }
-
-        private string ShowTransitions()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("Transiciones:");
-            builder.Append("\n");
-            for (int i = 0; i < transitionsList.Count; i++)
-            {
-                builder.Append("Desde: ");
-                builder.Append(transitionsList[i].ActualState.Name);
-                builder.Append(" - Si Entra: ");
-                builder.Append(transitionsList[i].InputSymbol.Name);
-                builder.Append(" - Va Hacia: ");
-                builder.Append(transitionsList[i].DestinationState.Name);
-
-                if (i != transitionsList.Count - 1)
-                {
-                    builder.Append("\n");
-                }
-            }
-            return builder.ToString();
-        }
-
-        private string WriteFiniteAutomaton()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append(serializedInputSymbolsList);
-            builder.Append("\n");
-            builder.Append(serializedStatesList);
-            builder.Append("\n");
-            builder.Append(serializedTransitionsList);
-            return builder.ToString();
         }
     }
 }

@@ -3,3 +3,7 @@ FiniteAutomatonPractice1/bin/
 *.user
 *.suo
 FiniteAutomatonPractice1/GettingStarted.Xamarin
+FiniteAutomatonPractice.Core/bin/
+FiniteAutomatonPractice2/bin/
+FiniteAutomatonPractice2/obj/
+FiniteAutomatonPractice.Core/obj/

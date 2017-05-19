@@ -1,4 +1,4 @@
-﻿namespace FiniteAutomatonPractice1.Models
+﻿namespace FiniteAutomatonPractice.Core.Models
 {
     public class InputSymbol
     {
