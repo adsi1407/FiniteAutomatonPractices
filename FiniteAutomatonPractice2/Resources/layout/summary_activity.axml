@@ -22,4 +22,18 @@
         android:id="@+id/lblTransitions"
         android:layout_marginBottom="20dp"
         android:gravity="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de autómata:"
+            android_layout_marginRight="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAutomatonType" />
+    </LinearLayout>
 </LinearLayout>

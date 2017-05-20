@@ -23,8 +23,10 @@ namespace FiniteAutomatonPractice2.Views
 		TextView lblInputSymbols;
 		TextView lblStates;
 		TextView lblTransitions;
+        TextView txtAutomatonType;
 
         StringOperations stringOperations;
+        AutomatonOperations automatonOperations;
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -35,20 +37,31 @@ namespace FiniteAutomatonPractice2.Views
 			serializedStatesList = Intent.GetStringExtra("serializedStatesList");
 			serializedTransitionsList = Intent.GetStringExtra("serializedTransitionsList");
 
-			inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList);
-			statesList = JsonConvert.DeserializeObject<List<State>>(serializedStatesList);
-			transitionsList = JsonConvert.DeserializeObject<List<Transition>>(serializedTransitionsList);
+			inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList).OrderBy(x => x.Name).ToList();
+            statesList = JsonConvert.DeserializeObject<List<State>>(serializedStatesList).OrderBy(x => x.Name).ToList();
+			transitionsList = JsonConvert.DeserializeObject<List<Transition>>(serializedTransitionsList).OrderBy(x => x.ActualState.Name).ThenBy(x => x.InputSymbol.Name).ToList();
 
 			lblInputSymbols = FindViewById<TextView>(Resource.Id.lblInputSymbols);
 			lblStates = FindViewById<TextView>(Resource.Id.lblStates);
 			lblTransitions = FindViewById<TextView>(Resource.Id.lblTransitions);
+            txtAutomatonType = FindViewById<TextView>(Resource.Id.txtAutomatonType);
 
             stringOperations = new StringOperations();
 
-            lblInputSymbols.Text = stringOperations.ShowInputSymbols(inputSymbolsList.OrderBy(x => x.Name).ToList());
-			lblStates.Text = stringOperations.ShowStates(statesList.OrderBy(x => x.Name).ToList());
-			lblTransitions.Text = stringOperations.ShowTransitions(transitionsList.OrderBy(x => x.ActualState.Name).ThenBy(x => x.InputSymbol.Name).ToList());
+            lblInputSymbols.Text = stringOperations.ShowInputSymbols(inputSymbolsList);
+			lblStates.Text = stringOperations.ShowStates(statesList);
+			lblTransitions.Text = stringOperations.ShowTransitions(transitionsList);
 
-		}
+            automatonOperations = new AutomatonOperations();
+
+            if (automatonOperations.IsDeterministic(inputSymbolsList, statesList, transitionsList))
+            {
+                txtAutomatonType.Text = "Determinístico";
+            }
+            else
+            {
+                txtAutomatonType.Text = "No determinístico";
+            }
+        }
 	}
 }

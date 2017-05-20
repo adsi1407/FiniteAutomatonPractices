@@ -74,22 +74,29 @@ namespace FiniteAutomatonPractice2.Views
 
         private void BtnSaveFiniteAutomaton_Click(object sender, System.EventArgs e)
         {
-            string directoryDocuments = Environment.ExternalStorageDirectory.Path;
-            string fileName = Path.Combine(directoryDocuments, "AutomataFinito.txt");
-            serializedTransitionsList = JsonConvert.SerializeObject(transitionsList);
-            if (File.Exists(fileName))
+            if (transitionsList.Count > 0)
             {
-                File.Delete(fileName);
+                string directoryDocuments = Environment.ExternalStorageDirectory.Path;
+                string fileName = Path.Combine(directoryDocuments, "AutomataFinito.txt");
+                serializedTransitionsList = JsonConvert.SerializeObject(transitionsList);
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+                File.WriteAllText(fileName, stringOperations.WriteFiniteAutomaton(serializedInputSymbolsList, serializedStatesList, serializedTransitionsList));
+
+                Toast.MakeText(this, string.Format("El autómata finito se ha guardado correctamente en {0}", fileName), ToastLength.Long).Show();
+
+                var intent = new Intent(this, typeof(SummaryActivity));
+                intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
+                intent.PutExtra("serializedStatesList", serializedStatesList);
+                intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
+                StartActivity(intent);
             }
-            File.WriteAllText(fileName, stringOperations.WriteFiniteAutomaton(serializedInputSymbolsList, serializedStatesList, serializedTransitionsList));
-
-            Toast.MakeText(this, string.Format("El autómata finito se ha guardado correctamente en {0}", fileName), ToastLength.Long).Show();
-
-			var intent = new Intent(this, typeof(SummaryActivity));
-            intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
-            intent.PutExtra("serializedStatesList", serializedStatesList);
-            intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
-            StartActivity(intent);
+            else
+            {
+                Toast.MakeText(this, "Debes ingresar al menos una transición.", ToastLength.Short).Show();
+            }
         }
     }
 }
