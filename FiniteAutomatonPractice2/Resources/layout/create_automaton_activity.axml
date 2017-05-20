@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:gravity="center"
+      android:padding="20dp">
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Ingresa los símbolos de entrada"/>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="48dp">
+          <EditText
+              android:layout_width="100dp"
+              android:layout_height="match_parent"
+              android:id="@+id/txtInputSymbols"
+              android:hint="Ejemplo: 1"/>
+          <Button
+              android:layout_width="100dp"
+              android:layout_height="match_parent"
+              android:id="@+id/btnSaveInputSymbols"
+              android:gravity="center"
+              android:text="Guardar"/>
+      </LinearLayout>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/lblInputSymbols"
+          android:layout_marginTop="10dp"
+          android:gravity="center"
+          android:visibility="gone"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="50dp"
+          android:text="Ingresa un estado e indica si es de aceptación"/>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="48dp">
+          <EditText
+              android:layout_width="100dp"
+              android:layout_height="match_parent"
+              android:id="@+id/txtStates"
+              android:hint="Ejemplo: A"
+              android:layout_marginRight="20dp" />
+          <CheckBox
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/checkIsAceptance"
+              android:text="Aceptación" />
+      </LinearLayout>
+      <Button
+          android:layout_width="100dp"
+          android:layout_height="match_parent"
+          android:id="@+id/btnSaveStates"
+          android:gravity="center"
+          android:text="Guardar"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/lblStates"
+          android:layout_marginTop="10dp"
+          android:gravity="center"
+          android:visibility="gone"
+          android:layout_marginBottom="30dp"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="50dp"
+          android:text="Ingresa las trancisiones:" />
+      <Button
+          android:layout_width="250dp"
+          android:layout_height="match_parent"
+          android:id="@+id/btnTransitions"
+          android:gravity="center"
+          android:text="Transiciones"/>
+  </LinearLayout>
+</ScrollView>
