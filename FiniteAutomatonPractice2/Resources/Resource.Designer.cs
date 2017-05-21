@@ -69,6 +69,9 @@ namespace FiniteAutomatonPractice2
 			// aapt resource value: 0x7f050012
 			public const int btnFinish = 2131034130;
 			
+			// aapt resource value: 0x7f050019
+			public const int btnIntersection = 2131034137;
+			
 			// aapt resource value: 0x7f050009
 			public const int btnLoad = 2131034121;
 			
@@ -95,6 +98,9 @@ namespace FiniteAutomatonPractice2
 			
 			// aapt resource value: 0x7f050007
 			public const int btnTransitions = 2131034119;
+			
+			// aapt resource value: 0x7f050018
+			public const int btnUnion = 2131034136;
 			
 			// aapt resource value: 0x7f05000a
 			public const int btnUnionIntersection = 2131034122;

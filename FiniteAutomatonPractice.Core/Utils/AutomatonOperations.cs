@@ -141,5 +141,45 @@ namespace FiniteAutomatonPractice.Core.Utils
 
             return finiteAutomatonResult;
         }
+
+        public bool EqualInputSymbols(FiniteAutomaton finiteAutomaton1, FiniteAutomaton finiteAutomaton2)
+        {
+            bool result = true;
+
+            List<InputSymbol> inputSymbols1 = finiteAutomaton1.InputSymbols.OrderBy(x => x.Name).ToList();
+            List<InputSymbol> inputSymbols2 = finiteAutomaton2.InputSymbols.OrderBy(x => x.Name).ToList();
+
+            if (inputSymbols1.Count == inputSymbols2.Count)
+            {
+                for (int i = 0; i < inputSymbols1.Count; i++)
+                {
+                    if (inputSymbols1[i].Name != inputSymbols2[i].Name)
+                    {
+                        result = false;
+                        i = inputSymbols1.Count;
+                    }
+                }
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public FiniteAutomaton JoinFiniteAutomatons(FiniteAutomaton finiteAutomaton1, FiniteAutomaton finiteAutomaton2)
+        {
+            var finiteAutomatonResult = new FiniteAutomaton();
+
+            return finiteAutomatonResult;
+        }
+
+        public FiniteAutomaton IntersectFiniteAutomatons(FiniteAutomaton finiteAutomaton1, FiniteAutomaton finiteAutomaton2)
+        {
+            var finiteAutomatonResult = new FiniteAutomaton();
+
+            return finiteAutomatonResult;
+        }
     }
 }
