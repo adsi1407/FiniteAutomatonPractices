@@ -75,5 +75,20 @@ namespace FiniteAutomatonPractice.Core.Utils
             builder.Append(serializedTransitionsList);
             return builder.ToString();
         }
+
+        public string ShowAllAutomaton(FiniteAutomaton automaton)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append(ShowInputSymbols(automaton.InputSymbols));
+            builder.Append("\n");
+            builder.Append("\n");
+            builder.Append(ShowStates(automaton.States));
+            builder.Append("\n");
+            builder.Append("\n");
+            builder.Append(ShowTransitions(automaton.Transitions));
+
+            return builder.ToString();
+        }
     }
 }

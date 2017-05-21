@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\FiniteAutomaton.cs" />
     <Compile Include="Models\InputSymbol.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Transition.cs" />

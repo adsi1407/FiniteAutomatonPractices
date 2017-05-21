@@ -60,20 +60,29 @@ namespace FiniteAutomatonPractice2
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050010
+			public const int btnConvertToDeterministic = 2131034128;
+			
 			// aapt resource value: 0x7f050008
 			public const int btnCreate = 2131034120;
+			
+			// aapt resource value: 0x7f050011
+			public const int btnFinish = 2131034129;
 			
 			// aapt resource value: 0x7f050009
 			public const int btnLoad = 2131034121;
 			
 			// aapt resource value: 0x7f05000d
-			public const int btnRemoveEqualStates = 2131034125;
+			public const int btnOperations = 2131034125;
 			
 			// aapt resource value: 0x7f05000e
-			public const int btnRemoveStrangeStates = 2131034126;
+			public const int btnRemoveEqualStates = 2131034126;
 			
-			// aapt resource value: 0x7f050013
-			public const int btnSaveFiniteAutomaton = 2131034131;
+			// aapt resource value: 0x7f05000f
+			public const int btnRemoveStrangeStates = 2131034127;
+			
+			// aapt resource value: 0x7f050016
+			public const int btnSaveFiniteAutomaton = 2131034134;
 			
 			// aapt resource value: 0x7f050001
 			public const int btnSaveInputSymbols = 2131034113;
@@ -81,8 +90,8 @@ namespace FiniteAutomatonPractice2
 			// aapt resource value: 0x7f050005
 			public const int btnSaveStates = 2131034117;
 			
-			// aapt resource value: 0x7f050012
-			public const int btnSaveTransition = 2131034130;
+			// aapt resource value: 0x7f050015
+			public const int btnSaveTransition = 2131034133;
 			
 			// aapt resource value: 0x7f050007
 			public const int btnTransitions = 2131034119;
@@ -102,14 +111,14 @@ namespace FiniteAutomatonPractice2
 			// aapt resource value: 0x7f05000b
 			public const int lblTransitions = 2131034123;
 			
-			// aapt resource value: 0x7f05000f
-			public const int spinnerActualState = 2131034127;
+			// aapt resource value: 0x7f050012
+			public const int spinnerActualState = 2131034130;
 			
-			// aapt resource value: 0x7f050011
-			public const int spinnerDestinationState = 2131034129;
+			// aapt resource value: 0x7f050014
+			public const int spinnerDestinationState = 2131034132;
 			
-			// aapt resource value: 0x7f050010
-			public const int spinnerInputSymbol = 2131034128;
+			// aapt resource value: 0x7f050013
+			public const int spinnerInputSymbol = 2131034131;
 			
 			// aapt resource value: 0x7f05000c
 			public const int txtAutomatonType = 2131034124;

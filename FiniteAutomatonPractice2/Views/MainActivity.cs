@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FiniteAutomatonPractice2.Views
 {
-    [Activity(Label = "Automatas Finitos", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Automatas Finitos", Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         Button btnCreate;

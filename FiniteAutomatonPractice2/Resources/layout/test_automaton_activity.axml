@@ -22,5 +22,19 @@
             android:gravity="center"
             android:layout_marginBottom="20dp"
             android:text="Quitar Estados Extraños"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnConvertToDeterministic"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="Convertir a Determinístico" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnFinish"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="Terminar" />
     </LinearLayout>
 </ScrollView>
