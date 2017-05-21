@@ -9,11 +9,14 @@ using System.Linq;
 
 namespace FiniteAutomatonPractice2.Views
 {
-    [Activity(Label = "Automatas Finitos", Icon = "@drawable/icon")]
+    [Activity(Label = "Automatas Finitos", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         Button btnCreate;
         Button btnLoad;
+        Button btnUnionIntersection;
+        string serializedAutomaton;
+        string serializedAutomaton1;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,6 +27,11 @@ namespace FiniteAutomatonPractice2.Views
             btnCreate.Click += BtnCreate_Click;
             btnLoad = FindViewById<Button>(Resource.Id.btnLoad);
             btnLoad.Click += BtnLoad_Click;
+            btnUnionIntersection = FindViewById<Button>(Resource.Id.btnUnionIntersection);
+            btnUnionIntersection.Click += BtnUnionIntersection_Click;
+
+            serializedAutomaton = Intent.GetStringExtra("serializedAutomaton");
+            serializedAutomaton1 = Intent.GetStringExtra("serializedAutomaton1");
         }
 
         private void BtnCreate_Click(object sender, System.EventArgs e)
@@ -39,6 +47,21 @@ namespace FiniteAutomatonPractice2.Views
             if (intent.ResolveActivity(PackageManager) != null)
             {
                 StartActivityForResult(intent, 0);
+            }
+        }
+
+        private void BtnUnionIntersection_Click(object sender, System.EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(serializedAutomaton1) && !string.IsNullOrEmpty(serializedAutomaton))
+            {
+                var intent = new Intent(this, typeof(UnionIntersectionActivity));
+                intent.PutExtra("serializedAutomaton", serializedAutomaton);
+                intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
+                StartActivity(intent);
+            }
+            else
+            {
+                Toast.MakeText(this, "Primero debes crear o cargar los autómatas finitos.", ToastLength.Long).Show();
             }
         }
 

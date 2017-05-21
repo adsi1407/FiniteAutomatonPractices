@@ -27,6 +27,7 @@ namespace FiniteAutomatonPractice2.Views
         List<State> statesList;
         List<Transition> transitionsList;
         string serializedTransitionsList;
+        string serializedAutomaton1;
 
         StringOperations stringOperations;
 
@@ -48,6 +49,7 @@ namespace FiniteAutomatonPractice2.Views
 
             serializedInputSymbolsList = Intent.GetStringExtra("serializedInputSymbolsList");
             serializedStatesList = Intent.GetStringExtra("serializedStatesList");
+            serializedAutomaton1 = Intent.GetStringExtra("serializedAutomaton1");
             inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList);
             statesList = JsonConvert.DeserializeObject<List<State>>(serializedStatesList);
 
@@ -91,6 +93,7 @@ namespace FiniteAutomatonPractice2.Views
                 intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
                 intent.PutExtra("serializedStatesList", serializedStatesList);
                 intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
+                intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
                 StartActivity(intent);
             }
             else

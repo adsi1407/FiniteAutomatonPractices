@@ -66,6 +66,7 @@
     <Compile Include="Views\SummaryActivity.cs" />
     <Compile Include="Views\TestFiniteAutomatonActivity.cs" />
     <Compile Include="Views\TransitionsActivity.cs" />
+    <Compile Include="Views\UnionIntersectionActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -81,6 +82,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\transitions_activity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\union_intersection_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using FiniteAutomatonPractice.Core.Models;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 
 namespace FiniteAutomatonPractice2.Views
 {
-    [Activity(Label = "Probar Automata Finito", MainLauncher = true)]
+    [Activity(Label = "Probar Automata Finito")]
     public class TestFiniteAutomatonActivity : Activity
     {
         Button btnRemoveEqualStates;
@@ -17,6 +18,7 @@ namespace FiniteAutomatonPractice2.Views
         Button btnFinish;
 
         string serializedAutomaton;
+        string serializedAutomaton1;
 
         FiniteAutomaton finiteAutomaton;
 
@@ -38,16 +40,16 @@ namespace FiniteAutomatonPractice2.Views
             btnRemoveEqualStates.Click += BtnRemoveEqualStates_Click;
             btnRemoveStrangeStates = FindViewById<Button>(Resource.Id.btnRemoveStrangeStates);
             btnRemoveStrangeStates.Click += BtnRemoveStrangeStates_Click;
-            btnRemoveStrangeStates.Visibility = Android.Views.ViewStates.Gone;
             btnConvertToDeterministic = FindViewById<Button>(Resource.Id.btnConvertToDeterministic);
             btnConvertToDeterministic.Click += BtnConvertToDeterministic_Click;
             btnFinish = FindViewById<Button>(Resource.Id.btnFinish);
             btnFinish.Click += BtnFinish_Click;
 
-            //serializedAutomaton = Intent.GetStringExtra("serializedAutomaton");
-            //finiteAutomaton = JsonConvert.DeserializeObject<FiniteAutomaton>(serializedAutomaton);
+            serializedAutomaton = Intent.GetStringExtra("serializedAutomaton");
+            serializedAutomaton1 = Intent.GetStringExtra("serializedAutomaton1");
+            finiteAutomaton = JsonConvert.DeserializeObject<FiniteAutomaton>(serializedAutomaton);
 
-            BuildFiniteAutomatonForTest();
+            //BuildFiniteAutomatonForTest();
 
             automatonOperations = new AutomatonOperations();
             stringOperations = new StringOperations();
@@ -95,6 +97,23 @@ namespace FiniteAutomatonPractice2.Views
 
         private void BtnFinish_Click(object sender, System.EventArgs e)
         {
+            if (equalStatesRemoved)
+            {
+                var serializedAutomaton = JsonConvert.SerializeObject(finiteAutomaton);
+                Intent intent;
+                if (string.IsNullOrEmpty(serializedAutomaton1))
+                {
+                    intent = new Intent(this, typeof(CreateAutomatonFiniteActivity));
+                    intent.SetFlags(ActivityFlags.ClearTop);
+                }
+                else
+                {
+                    intent = new Intent(this, typeof(MainActivity));
+                    intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
+                }
+                intent.PutExtra("serializedAutomaton", serializedAutomaton);
+                StartActivity(intent);
+            }
         }
 
         private void ShowAutomatonResultDialog()
@@ -138,7 +157,7 @@ namespace FiniteAutomatonPractice2.Views
                 new Transition { ActualState = stateC, InputSymbol = inputSymbol1, DestinationState = stateB },
                 new Transition { ActualState = stateC, InputSymbol = inputSymbol0, DestinationState = stateA },
                 new Transition { ActualState = stateD, InputSymbol = inputSymbol0, DestinationState = stateC },
-                new Transition { ActualState = stateE, InputSymbol = inputSymbol0, DestinationState = stateE },
+                //new Transition { ActualState = stateE, InputSymbol = inputSymbol0, DestinationState = stateE },
             };
             finiteAutomaton.IsDeterministic = true;
         }

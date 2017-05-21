@@ -23,11 +23,14 @@ namespace FiniteAutomatonPractice2.Views
         List<InputSymbol> inputSymbolsList;
         List<State> statesList;
         StringOperations stringOperations;
+        string serializedAutomaton1;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.create_automaton_activity);
+
+            serializedAutomaton1 = Intent.GetStringExtra("serializedAutomaton");
 
             btnSaveInputSymbols = FindViewById<Button>(Resource.Id.btnSaveInputSymbols);
             btnSaveInputSymbols.Click += BtnSaveInputSymbols_Click;
@@ -107,6 +110,7 @@ namespace FiniteAutomatonPractice2.Views
             var intent = new Intent(this, typeof(TransitionsActivity));
             intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
             intent.PutExtra("serializedStatesList", serializedStatesList);
+            intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
             StartActivity(intent);
         }
     }

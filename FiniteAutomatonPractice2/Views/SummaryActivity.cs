@@ -16,8 +16,9 @@ namespace FiniteAutomatonPractice2.Views
 		string serializedInputSymbolsList;
 		string serializedStatesList;
 		string serializedTransitionsList;
+        string serializedAutomaton1;
 
-		List<InputSymbol> inputSymbolsList;
+        List<InputSymbol> inputSymbolsList;
 		List<State> statesList;
 		List<Transition> transitionsList;
 
@@ -40,11 +41,12 @@ namespace FiniteAutomatonPractice2.Views
 			serializedInputSymbolsList = Intent.GetStringExtra("serializedInputSymbolsList");
 			serializedStatesList = Intent.GetStringExtra("serializedStatesList");
 			serializedTransitionsList = Intent.GetStringExtra("serializedTransitionsList");
+            serializedAutomaton1 = Intent.GetStringExtra("serializedAutomaton1");
 
             //No se pueden organizar las listas porque se perdería de vista el estado inicial
-			//inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList).OrderBy(x => x.Name).ToList();
+            //inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList).OrderBy(x => x.Name).ToList();
             //statesList = JsonConvert.DeserializeObject<List<State>>(serializedStatesList).OrderBy(x => x.Name).ToList();
-			//transitionsList = JsonConvert.DeserializeObject<List<Transition>>(serializedTransitionsList).OrderBy(x => x.ActualState.Name).ThenBy(x => x.InputSymbol.Name).ToList();
+            //transitionsList = JsonConvert.DeserializeObject<List<Transition>>(serializedTransitionsList).OrderBy(x => x.ActualState.Name).ThenBy(x => x.InputSymbol.Name).ToList();
 
             inputSymbolsList = JsonConvert.DeserializeObject<List<InputSymbol>>(serializedInputSymbolsList);
             statesList = JsonConvert.DeserializeObject<List<State>>(serializedStatesList);
@@ -87,6 +89,7 @@ namespace FiniteAutomatonPractice2.Views
             var serializedAutomaton = JsonConvert.SerializeObject(finiteAutomaton);
             var intent = new Intent(this, typeof(TestFiniteAutomatonActivity));
             intent.PutExtra("serializedAutomaton", serializedAutomaton);
+            intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
             StartActivity(intent);
         }
     }
