@@ -78,14 +78,13 @@ namespace FiniteAutomatonPractice2.Views
                     try
                     {
                         List<string> autiomatonTextSplitted = automatonText.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                        string serializedInputSymbolsList = autiomatonTextSplitted[0];
-                        string serializedStatesList = autiomatonTextSplitted[1];
-                        string serializedTransitionsList = autiomatonTextSplitted[2];
+                        
+                        serializedAutomaton1 = autiomatonTextSplitted[0];
+                        serializedAutomaton = autiomatonTextSplitted[1];
 
-                        var intent = new Intent(this, typeof(SummaryActivity));
-                        intent.PutExtra("serializedInputSymbolsList", serializedInputSymbolsList);
-                        intent.PutExtra("serializedStatesList", serializedStatesList);
-                        intent.PutExtra("serializedTransitionsList", serializedTransitionsList);
+                        var intent = new Intent(this, typeof(LoadSummaryActivity));
+                        intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
+                        intent.PutExtra("serializedAutomaton2", serializedAutomaton);
                         StartActivity(intent);
                     }
                     catch (Exception)

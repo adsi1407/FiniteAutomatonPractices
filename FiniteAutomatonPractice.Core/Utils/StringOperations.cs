@@ -90,5 +90,14 @@ namespace FiniteAutomatonPractice.Core.Utils
 
             return builder.ToString();
         }
+
+        public string WriteTwoFiniteAutomatons(string serializedAutomaton1, string serializedAutomaton2)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(serializedAutomaton1);
+            builder.Append("\n");
+            builder.Append(serializedAutomaton2);
+            return builder.ToString();
+        }
     }
 }

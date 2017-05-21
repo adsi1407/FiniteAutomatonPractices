@@ -85,7 +85,39 @@ namespace FiniteAutomatonPractice2.Views
                 {
                     File.Delete(fileName);
                 }
-                File.WriteAllText(fileName, stringOperations.WriteFiniteAutomaton(serializedInputSymbolsList, serializedStatesList, serializedTransitionsList));
+
+                if (string.IsNullOrEmpty(serializedAutomaton1))
+                {
+                    FiniteAutomaton finiteAutomatonAux1 = new FiniteAutomaton();
+                    finiteAutomatonAux1.InputSymbols = new List<InputSymbol>();
+                    finiteAutomatonAux1.States = new List<State>();
+                    finiteAutomatonAux1.Transitions = new List<Transition>();
+                    finiteAutomatonAux1.IsDeterministic = true;
+
+                    string serializedFiniteAutomatonAux1 = JsonConvert.SerializeObject(finiteAutomatonAux1);
+
+                    FiniteAutomaton finiteAutomatonAux2 = new FiniteAutomaton();
+                    finiteAutomatonAux2.InputSymbols = inputSymbolsList;
+                    finiteAutomatonAux2.States = statesList;
+                    finiteAutomatonAux2.Transitions = transitionsList;
+                    finiteAutomatonAux2.IsDeterministic = true;
+
+                    string serializedFiniteAutomatonAux2 = JsonConvert.SerializeObject(finiteAutomatonAux2);
+
+                    File.WriteAllText(fileName, stringOperations.WriteTwoFiniteAutomatons(serializedFiniteAutomatonAux1, serializedFiniteAutomatonAux2));
+                }
+                else
+                {
+                    FiniteAutomaton finiteAutomatonAux2 = new FiniteAutomaton();
+                    finiteAutomatonAux2.InputSymbols = inputSymbolsList;
+                    finiteAutomatonAux2.States = statesList;
+                    finiteAutomatonAux2.Transitions = transitionsList;
+                    finiteAutomatonAux2.IsDeterministic = true;
+
+                    string serializedFiniteAutomatonAux2 = JsonConvert.SerializeObject(finiteAutomatonAux2);
+
+                    File.WriteAllText(fileName, stringOperations.WriteTwoFiniteAutomatons(serializedAutomaton1, serializedFiniteAutomatonAux2));
+                }
 
                 Toast.MakeText(this, string.Format("El autómata finito se ha guardado correctamente en {0}", fileName), ToastLength.Long).Show();
 

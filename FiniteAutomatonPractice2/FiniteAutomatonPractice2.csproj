@@ -62,6 +62,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\CreateAutomatonFiniteActivity.cs" />
+    <Compile Include="Views\LoadSummaryActivity.cs" />
     <Compile Include="Views\MainActivity.cs" />
     <Compile Include="Views\SummaryActivity.cs" />
     <Compile Include="Views\TestFiniteAutomatonActivity.cs" />
@@ -85,6 +86,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\union_intersection_activity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\load_summary_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
