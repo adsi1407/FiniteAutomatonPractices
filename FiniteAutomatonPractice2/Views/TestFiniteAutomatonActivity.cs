@@ -15,6 +15,7 @@ namespace FiniteAutomatonPractice2.Views
         Button btnRemoveEqualStates;
         Button btnRemoveStrangeStates;
         Button btnConvertToDeterministic;
+        Button btnEnterRow;
         Button btnFinish;
 
         string serializedAutomaton;
@@ -42,6 +43,8 @@ namespace FiniteAutomatonPractice2.Views
             btnRemoveStrangeStates.Click += BtnRemoveStrangeStates_Click;
             btnConvertToDeterministic = FindViewById<Button>(Resource.Id.btnConvertToDeterministic);
             btnConvertToDeterministic.Click += BtnConvertToDeterministic_Click;
+            btnEnterRow = FindViewById<Button>(Resource.Id.btnEnterRow);
+            btnEnterRow.Click += BtnEnterRow_Click;
             btnFinish = FindViewById<Button>(Resource.Id.btnFinish);
             btnFinish.Click += BtnFinish_Click;
 
@@ -114,6 +117,10 @@ namespace FiniteAutomatonPractice2.Views
                 intent.PutExtra("serializedAutomaton", serializedAutomaton);
                 StartActivity(intent);
             }
+        }
+
+        private void BtnEnterRow_Click(object sender, System.EventArgs e)
+        {
         }
 
         private void ShowAutomatonResultDialog()
