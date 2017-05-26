@@ -14,14 +14,14 @@
             android:id="@+id/btnRemoveEqualStates"
             android:gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="Quitar Estados Equivalentes"/>
+            android:text="Quitar Estados Equivalentes" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/btnRemoveStrangeStates"
             android:gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="Quitar Estados Extraños"/>
+            android:text="Quitar Estados Extraños" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +35,7 @@
             android:id="@+id/btnEnterRow"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:text="Ingresar Línea" />
+            android:text="Ingresar Hilera" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
