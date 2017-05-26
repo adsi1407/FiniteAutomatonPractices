@@ -68,6 +68,7 @@
     <Compile Include="Views\TestFiniteAutomatonActivity.cs" />
     <Compile Include="Views\TransitionsActivity.cs" />
     <Compile Include="Views\UnionIntersectionActivity.cs" />
+    <Compile Include="Views\EnterRowActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -91,6 +92,7 @@
     <AndroidResource Include="Resources\layout\load_summary_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\enter_row_activity.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

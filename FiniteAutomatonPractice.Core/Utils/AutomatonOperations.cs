@@ -6,7 +6,6 @@ namespace FiniteAutomatonPractice.Core.Utils
 {
 	public class AutomatonOperations
 	{
-		List<Transition> repeatedTransitions;
 		public bool IsDeterministic(List<InputSymbol> inputSymbolsList, List<State> statesList, List<Transition> transitionsList)
 		{
 			bool isDeterministic = true;
@@ -35,7 +34,7 @@ namespace FiniteAutomatonPractice.Core.Utils
 			finiteAutomatonResult.InputSymbols = finiteAutomatonToSimplify.InputSymbols;
 			finiteAutomatonResult.IsDeterministic = finiteAutomatonToSimplify.IsDeterministic;
 
-			repeatedTransitions = new List<Transition>();
+			List<Transition> repeatedTransitions = new List<Transition>();
 
 			List<Transition> transitionsByActualStateI;
 			List<Transition> transitionsByActualStateJ;
@@ -174,6 +173,7 @@ namespace FiniteAutomatonPractice.Core.Utils
 			finiteAutomatonResult.InputSymbols = finiteAutomaton1.InputSymbols;
 			finiteAutomatonResult.IsDeterministic = finiteAutomaton1.IsDeterministic;
 			finiteAutomatonResult.States = new List<State>();
+			finiteAutomatonResult.Transitions = new List<Transition>();
 			bool isAceptance;
 
 			for (int i = 0; i < finiteAutomaton1.States.Count(); i++)
@@ -201,7 +201,19 @@ namespace FiniteAutomatonPractice.Core.Utils
 			{
 				for (int j = 0; j < finiteAutomaton2.Transitions.Count(); j++)
 				{
-					
+					if (finiteAutomaton1.Transitions[i].InputSymbol.Name == finiteAutomaton2.Transitions[j].InputSymbol.Name)
+					{
+						var actualState = finiteAutomatonResult.States.Where(x => x.Name == string.Format("{0}{1}", finiteAutomaton1.Transitions[i].ActualState.Name, finiteAutomaton2.Transitions[j].ActualState.Name)).FirstOrDefault();
+						var destinationState = finiteAutomatonResult.States.Where(x => x.Name == string.Format("{0}{1}", finiteAutomaton1.Transitions[i].DestinationState.Name, finiteAutomaton2.Transitions[j].DestinationState.Name)).FirstOrDefault();
+						finiteAutomatonResult.Transitions.Add(
+							new Transition()
+							{
+								ActualState = actualState,
+								InputSymbol = finiteAutomaton1.Transitions[i].InputSymbol,
+								DestinationState = destinationState,
+							}
+						);
+					}
 				}
 			}
 
@@ -211,8 +223,80 @@ namespace FiniteAutomatonPractice.Core.Utils
 		public FiniteAutomaton IntersectFiniteAutomatons(FiniteAutomaton finiteAutomaton1, FiniteAutomaton finiteAutomaton2)
 		{
 			var finiteAutomatonResult = new FiniteAutomaton();
+			finiteAutomatonResult.InputSymbols = finiteAutomaton1.InputSymbols;
+			finiteAutomatonResult.IsDeterministic = finiteAutomaton1.IsDeterministic;
+			finiteAutomatonResult.States = new List<State>();
+			finiteAutomatonResult.Transitions = new List<Transition>();
+			bool isAceptance;
+
+			for (int i = 0; i < finiteAutomaton1.States.Count(); i++)
+			{
+				for (int j = 0; j < finiteAutomaton2.States.Count(); j++)
+				{
+					if (finiteAutomaton1.States[i].Acceptance && finiteAutomaton2.States[j].Acceptance)
+					{
+						isAceptance = true;
+					}
+					else
+					{
+						isAceptance = false;
+					}
+					finiteAutomatonResult.States.Add(
+						new State
+						{
+							Name = string.Format("{0}{1}", finiteAutomaton1.States[i].Name, finiteAutomaton2.States[j].Name),
+							Acceptance = isAceptance
+						});
+				}
+			}
+
+			for (int i = 0; i < finiteAutomaton1.Transitions.Count(); i++)
+			{
+				for (int j = 0; j < finiteAutomaton2.Transitions.Count(); j++)
+				{
+					if (finiteAutomaton1.Transitions[i].InputSymbol.Name == finiteAutomaton2.Transitions[j].InputSymbol.Name)
+					{
+						var actualState = finiteAutomatonResult.States.Where(x => x.Name == string.Format("{0}{1}", finiteAutomaton1.Transitions[i].ActualState.Name, finiteAutomaton2.Transitions[j].ActualState.Name)).FirstOrDefault();
+						var destinationState = finiteAutomatonResult.States.Where(x => x.Name == string.Format("{0}{1}", finiteAutomaton1.Transitions[i].DestinationState.Name, finiteAutomaton2.Transitions[j].DestinationState.Name)).FirstOrDefault();
+						finiteAutomatonResult.Transitions.Add(
+							new Transition()
+							{
+								ActualState = actualState,
+								InputSymbol = finiteAutomaton1.Transitions[i].InputSymbol,
+								DestinationState = destinationState,
+							}
+						);
+					}
+				}
+			}
 
 			return finiteAutomatonResult;
+		}
+
+		public State TestRow(FiniteAutomaton finiteAutomaton, string row)
+		{
+			var actualState = finiteAutomaton.States[0];
+			var errorState = new State
+			{
+				Name = "Estado de Error",
+				Acceptance = false,
+			};
+			Transition actualTransition;
+
+			for (int i = 0; i < row.Length; i++)
+			{
+				actualTransition = finiteAutomaton.Transitions.Where(x => x.ActualState.Name == actualState.Name && x.InputSymbol.Name == row.Substring(i, 1)).FirstOrDefault();
+				if (actualTransition != null)
+				{
+					actualState = actualTransition.DestinationState;
+				}
+				else
+				{
+					actualState = errorState;
+				}
+			}
+
+			return actualState;
 		}
 	}
 }

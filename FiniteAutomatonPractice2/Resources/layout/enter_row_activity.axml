@@ -8,26 +8,23 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="20dp">
-        <Button
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btnUnion"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Ingresa una hilera para probar el autómata finito:"
             android:layout_marginBottom="20dp"
-            android:text="Unión" />
-        <Button
+            android:gravity="center" />
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btnIntersection"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="Intersección" />
+            android:layout_height="wrap_content"
+            android:id="@+id/txtRow"
+            android:layout_marginBottom="20dp" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnEnterRow"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:text="Ingresar Hilera" />
+            android:id="@+id/btnTestRow"
+            android:text="Probar"
+            android:layout_marginBottom="20dp"
+            android:gravity="center" />
     </LinearLayout>
 </ScrollView>

@@ -69,7 +69,7 @@ namespace FiniteAutomatonPractice2.Views
         {
             if (equalStatesRemoved)
             {
-                finiteAutomaton = automatonOperations.RemoveStrangeStates(finiteAutomaton);
+                //finiteAutomaton = automatonOperations.RemoveStrangeStates(finiteAutomaton);
                 strangeStatesRemoved = true;
                 ShowAutomatonResultDialog();
             }
@@ -102,7 +102,7 @@ namespace FiniteAutomatonPractice2.Views
         {
             if (equalStatesRemoved)
             {
-                var serializedAutomaton = JsonConvert.SerializeObject(finiteAutomaton);
+                var serializedAutomatonAux = JsonConvert.SerializeObject(finiteAutomaton);
                 Intent intent;
                 if (string.IsNullOrEmpty(serializedAutomaton1))
                 {
@@ -114,14 +114,28 @@ namespace FiniteAutomatonPractice2.Views
                     intent = new Intent(this, typeof(MainActivity));
                     intent.PutExtra("serializedAutomaton1", serializedAutomaton1);
                 }
-                intent.PutExtra("serializedAutomaton", serializedAutomaton);
+                intent.PutExtra("serializedAutomaton", serializedAutomatonAux);
                 StartActivity(intent);
             }
-        }
+			else
+			{
+				Toast.MakeText(this, "Primero debes quitar los estados equivalentes.", ToastLength.Short).Show();
+			}
+		}
 
         private void BtnEnterRow_Click(object sender, System.EventArgs e)
         {
-        }
+			if (equalStatesRemoved)
+			{
+				var intent = new Intent(this, typeof(EnterRowActivity));
+				intent.PutExtra("serializedAutomaton", serializedAutomaton);
+				StartActivity(intent);
+			}
+			else
+			{
+				Toast.MakeText(this, "Primero debes quitar los estados equivalentes y extraños.", ToastLength.Short).Show();
+			}
+		}
 
         private void ShowAutomatonResultDialog()
         {
